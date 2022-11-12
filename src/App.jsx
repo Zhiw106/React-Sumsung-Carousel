@@ -37,7 +37,7 @@ function App(props) {
     }
     return (
         <div className='carousel'>
-            {arrImgs.map((item, index) => (
+            {arrImgs?.map((item, index) => (
                     <div key={index} className={current === index ? 'image active' : 'image hidden'}>
 
                         <img src={item} alt="" className='image'/>
