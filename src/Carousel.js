@@ -4,13 +4,21 @@ import './Carousel.css'
 import CarouselBtn from "./CarouselBtn";
 import CarouselDotsAndPlay from "./CarouselDotsAndPlay";
 import CarouselImage from "./CarouselImage";
+import {clear} from "@testing-library/user-event/dist/clear";
 
 function Carousel({arrImgs}) {
 
     const [isPlay, setIsPlay] = useState(true)
     const [current, setCurrent] = useState(0)
 
-
+    useEffect(() => {
+        const carouselInterval = setInterval(() => {
+            console.log('interval')
+            setCurrent(current => current < arrImgs.length - 1 ? current + 1 : 0)
+        }, 2000)
+        return () =>
+            clearInterval(carouselInterval)
+    }, [])
     const handlePlay = () => {
         setIsPlay(!isPlay)
     }
@@ -32,7 +40,7 @@ function Carousel({arrImgs}) {
 
     return (
         <div className='carousel'>
-            <CarouselImage arrImgs={arrImgs} current={current} />
+            <CarouselImage arrImgs={arrImgs} current={current}/>
             <CarouselBtn prevBtn={prevBtn} nextBtn={nextBtn}/>
             <CarouselDotsAndPlay arrImgs={arrImgs} current={current} isPlay={isPlay} handlePlay={handlePlay}
                                  handlePause={handlePause} handleDot={handleDot}/>
