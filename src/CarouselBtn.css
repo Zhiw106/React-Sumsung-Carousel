@@ -1,0 +1,9 @@
+.imgBtn {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    top: 50%;
+    width: 100%;
+    font-size: 20px;
+}
